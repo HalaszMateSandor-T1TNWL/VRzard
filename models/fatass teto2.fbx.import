@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dndw8hrv3fc0f"
-path="res://.godot/imported/fatass teto2.fbx-6c1e749565ba5dacde772755b3711ffc.scn"
+path="res://.godot/imported/fatass teto2.fbx-ae3a29ecc948ec7b7c5766d7cd1b267e.scn"
 
 [deps]
 
-source_file="res://fatass teto2.fbx"
-dest_files=["res://.godot/imported/fatass teto2.fbx-6c1e749565ba5dacde772755b3711ffc.scn"]
+source_file="res://models/fatass teto2.fbx"
+dest_files=["res://.godot/imported/fatass teto2.fbx-ae3a29ecc948ec7b7c5766d7cd1b267e.scn"]
 
 [params]
 
