@@ -19,4 +19,4 @@ Movement:
         Maybe a gust of wind is shot behind the player ?
         Maybe some tentacles reach out, in front of the player and pulls them there ?
 UI:
-    HP and stats would be displayed on the left side of the spellbook, kind of like how you would do it in pen-and-paper DnD!
+  HP and stats would be displayed on the left side of the spellbook, kind of like how you would do it in pen-and-paper DnD!
