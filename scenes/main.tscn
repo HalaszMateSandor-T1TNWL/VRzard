@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg1qiqasdgcxa"]
+[gd_scene load_steps=14 format=3 uid="uid://bg1qiqasdgcxa"]
 
-[ext_resource type="Texture2D" uid="uid://7012psm2dfkt" path="res://textures/Name_1m x 1m.png" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://blj23w6s1lo0f" path="res://textures/Name_1m x 1m.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bik0aahsipifq" path="res://scenes/xr_camera.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ci171806fm5k2" path="res://scenes/teto_pickable.tscn" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://bn8un7j7yriot" path="res://scenes/spellbook_pickable.tscn" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -80,6 +79,3 @@ shape = SubResource("BoxShape3D_sugp2")
 
 [node name="Teto" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(0.760644, 0, -0.649169, 0, 1, 0, 0.649169, 0, 0.760644, -1.4681, 1.11311, -0.869502)
-
-[node name="Spellbook" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(-0.597132, 0.650381, 0.469508, 0.00287363, 0.587048, -0.809547, -0.802138, -0.482057, -0.352414, -1.32344, 1.17346, -1.01659)

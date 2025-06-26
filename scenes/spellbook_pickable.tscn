@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bn8un7j7yriot"]
 
 [ext_resource type="Script" uid="uid://dw5t06mkumkbj" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_780pw"]
-[ext_resource type="PackedScene" uid="uid://b54e5ccnhw5ou" path="res://models/book(brezier).fbx" id="2_780pw"]
+[ext_resource type="PackedScene" uid="uid://dfdfu4hxiuto6" path="res://models/BreizerBook.fbx" id="2_780pw"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_nxais"]
 [ext_resource type="Script" uid="uid://brjd7ppusiryq" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="4_05nu5"]
 [ext_resource type="Animation" uid="uid://bediglpx0rj7i" path="res://addons/godot-xr-tools/hands/animations/left/Grip 5.res" id="4_i8cxh"]
@@ -27,8 +27,9 @@ second_hand_grab = 2
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 shape = SubResource("BoxShape3D_eolg4")
 
-[node name="book(brezier)" parent="RigidBody3D/CollisionShape3D" instance=ExtResource("2_780pw")]
+[node name="BreizerBook" parent="RigidBody3D/CollisionShape3D" instance=ExtResource("2_780pw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0269318, -0.178589, 0.87524)
+visible = false
 
 [node name="GrabPointHandLeft" parent="RigidBody3D" instance=ExtResource("3_nxais")]
 transform = Transform3D(0.174563, -0.517597, -0.837628, 0.977187, 0.19558, 0.0827915, 0.120971, -0.832971, 0.53993, 0.0265149, -0.0098971, -0.0402083)

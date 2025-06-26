@@ -1,19 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://bik0aahsipifq"]
+[gd_scene load_steps=13 format=3 uid="uid://bik0aahsipifq"]
 
 [ext_resource type="Script" uid="uid://tqo43muvvcsk" path="res://scripts/PlayerCamera.cs" id="1_bltah"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_agsyn"]
+[ext_resource type="Script" uid="uid://ci0ve3vqoq3lu" path="res://scripts/BookWatcher.cs" id="2_qk257"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_sxk34"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_hntak"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_rvjwr"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_sxk34"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_hntak"]
+[ext_resource type="PackedScene" uid="uid://dqx4wr1nncr6y" path="res://scenes/spellbook.tscn" id="6_bltah"]
+[ext_resource type="Script" uid="uid://ukkv455em2k" path="res://scripts/Picker.cs" id="9_43o0a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hntak"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_43o0a"]
+size = Vector3(1.36176, 0.143799, 0.0850906)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+current = true
 script = ExtResource("1_bltah")
+
+[node name="HeadArea" type="Area3D" parent="XROrigin3D/XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0136183, -0.0099244, -0.0268681)
+collision_layer = 9
+collision_mask = 8
+
+[node name="HeadCollision" type="CollisionShape3D" parent="XROrigin3D/XRCamera3D/HeadArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014887, 0.0146879, 0.0101476)
+shape = SubResource("BoxShape3D_hntak")
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
@@ -26,6 +45,28 @@ ranged_enable = false
 
 [node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("4_rvjwr")]
 
+[node name="BookWatcher" type="RayCast3D" parent="XROrigin3D/LeftController"]
+transform = Transform3D(0.0160388, -0.999871, -7.01082e-10, -4.37114e-08, 1.91069e-15, -1, 0.999871, 0.0160388, -4.37058e-08, -0.0179906, -0.0404898, 0.113682)
+collision_mask = 9
+hit_from_inside = true
+hit_back_faces = false
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 1, 1, 1)
+script = ExtResource("2_qk257")
+
+[node name="Spellbook" parent="XROrigin3D/LeftController" instance=ExtResource("6_bltah")]
+transform = Transform3D(0.00615704, 0.124836, 0.00173621, -0.000362116, 0.00175617, -0.124987, -0.124848, 0.00615137, 0.000448144, -0.0125137, -0.119328, 0.097414)
+
+[node name="PissNPooDOn" type="Area3D" parent="XROrigin3D/LeftController/Spellbook"]
+transform = Transform3D(1, 1.11759e-08, 0, 0, 1, 1.45519e-10, -6.98492e-10, 2.91038e-09, 1, 1.15342, -0.230539, -1.50661)
+collision_layer = 9
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftController/Spellbook/PissNPooDOn"]
+transform = Transform3D(1, 3.72529e-08, 2.32831e-09, 0, 1, 4.36557e-11, 0, 9.25502e-09, 1, -0.384801, 0.749568, -0.0807832)
+shape = SubResource("BoxShape3D_43o0a")
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
@@ -36,6 +77,13 @@ grab_distance = 0.08
 ranged_enable = false
 
 [node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("5_hntak")]
+
+[node name="Picker" type="RayCast3D" parent="XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, -0.0149569, -0.999888, 0, 0.999888, -0.0149569, 0.0298254, -0.0173841, 0.0828322)
+collision_mask = 9
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("9_43o0a")
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_sxk34")]
 collision_mask = 1019
