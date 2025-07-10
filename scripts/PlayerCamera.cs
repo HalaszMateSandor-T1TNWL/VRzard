@@ -59,7 +59,7 @@ public partial class PlayerCamera : Node3D
 	{
 		var currentRefreshRate = _xrInterface.DisplayRefreshRate;
 		GD.Print(currentRefreshRate > 0.0f
-			? "OpenXR: Refresh Rate reported as ${currentRefreshRate}"
+			? $"OpenXR: Refresh Rate reported as {currentRefreshRate}"
 			: "OpenXR: No Refresh Rates given by XR runtime");
 
 		var newRefreshRate = currentRefreshRate;
@@ -86,7 +86,7 @@ public partial class PlayerCamera : Node3D
 
 		if (currentRefreshRate != newRefreshRate)
 		{
-			GD.Print("Setting new Refresh Rate to ${newRefreshRate}");
+			GD.Print($"Setting new Refresh Rate to {newRefreshRate}");
 			_xrInterface.DisplayRefreshRate = newRefreshRate;
 			currentRefreshRate = newRefreshRate;
 		}

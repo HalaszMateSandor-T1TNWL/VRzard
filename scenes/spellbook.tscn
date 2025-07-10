@@ -1,34 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqx4wr1nncr6y"]
+[gd_scene load_steps=2 format=3 uid="uid://dqx4wr1nncr6y"]
 
 [ext_resource type="PackedScene" uid="uid://dfdfu4hxiuto6" path="res://models/BreizerBook.fbx" id="1_qbvpl"]
 
-[sub_resource type="SystemFont" id="SystemFont_qbvpl"]
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_lfox7"]
-font = SubResource("SystemFont_qbvpl")
-font_color = Color(0.886275, 0.564706, 0.854902, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_qbvpl"]
-viewport_path = NodePath("Node3D/SubViewport")
-
 [node name="Node3D" type="Node3D"]
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.854498, 0.517631, -1.58897)
-
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
-transparent_bg = true
-size = Vector2i(150, 25)
-
-[node name="Label" type="Label" parent="Node3D/SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Piss and poo'd on"
-label_settings = SubResource("LabelSettings_lfox7")
-
-[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
-texture = SubResource("ViewportTexture_qbvpl")
 
 [node name="BreizerBook" parent="." instance=ExtResource("1_qbvpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00340655, 0, -0.111815)

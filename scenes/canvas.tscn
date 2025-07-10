@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cof5l3mdm0sjd"]
+
+[ext_resource type="Script" uid="uid://bcqiv2cr8pqgw" path="res://scripts/Draw.cs" id="1_7axt1"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_7axt1")
+_color = Color(1, 1, 1, 1)
+_width = 12.0
+
+[node name="Line2D" type="Line2D" parent="Node2D"]

@@ -22,6 +22,5 @@ public static class SceneNodeResolver
                 field.SetValue(target, node);
             }
         }
-
     }
 }
