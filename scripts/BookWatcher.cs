@@ -8,14 +8,19 @@ public partial class BookWatcher : RayCast3D
 {
 	[Signal]
 	public delegate void EnabledStateEventHandler(bool value);
+	[Signal]
+	public delegate void IsBookVisibleEventHandler(bool value);
 
 	private Node3D _book;
+	private bool _isVisible;
 	private GDScript _controllerScript;
 	private GodotObject _controllerScriptNode;
 	private XRController3D _leftController;
 
 	public override void _Ready()
 	{
+		_book = GetNode<Node3D>($"../Spellbook");
+		
 		_controllerScript = GD.Load<GDScript>("res://addons/godot-xr-tools/misc/xr_helpers.gd");
 		_controllerScriptNode = (GodotObject)_controllerScript.New();
 
@@ -35,20 +40,21 @@ public partial class BookWatcher : RayCast3D
 			this.Enabled = true;
 			EmitSignal(SignalName.EnabledState, true);
 		}
+		_book.Visible = _isVisible;
+		EmitSignal(SignalName.IsBookVisible, _isVisible);
 	}
 
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		_book = GetNode<Node3D>($"../Spellbook");
-		_book.SetVisible(false);
+		_isVisible = false;
 		
 		if (IsColliding())
 		{
 			var target = GetCollider() as Node;
 			if (target != null && target.Name == "HeadArea")
 			{
-				_book.SetVisible(true);
+				_isVisible = true;
 			}
 		}
 	}

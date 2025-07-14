@@ -1,17 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://6m485ygtfys7"]
+[gd_scene load_steps=3 format=3 uid="uid://6m485ygtfys7"]
 
-[sub_resource type="Gradient" id="Gradient_3nbt4"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_eax7h"]
-gradient = SubResource("Gradient_3nbt4")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.42735, 0)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ihoiq"]
-texture = SubResource("GradientTexture2D_eax7h")
-modulate_color = Color(1, 0.364706, 0.552941, 1)
+[ext_resource type="Script" uid="uid://7t52rn8m26ed" path="res://scripts/SpellbookUi.cs" id="1_eax7h"]
+[ext_resource type="Script" uid="uid://b7q3677pj1hts" path="res://scripts/UIHandler.cs" id="2_ihoiq"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_eax7h")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -27,31 +20,35 @@ offset_bottom = 35.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -163.0
-offset_top = -31.5
-offset_right = 163.0
-offset_bottom = 56.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 2
+offset_left = 74.0
+offset_top = 4.0
+offset_right = 400.0
+offset_bottom = 92.0
 size_flags_stretch_ratio = 9.5
 alignment = 1
+script = ExtResource("2_ihoiq")
 
-[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Spell#1" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxTexture_ihoiq")
-toggle_mode = true
-text = "Button
-"
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="HSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Spell#2" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Spell#3" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Spell#4" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="RegisterName" from="." to="Control/VBoxContainer" method="OnRegisterNameRequest"]
+[connection signal="RegisterShape" from="." to="Control/VBoxContainer" method="OnRegisterShapeRequest"]

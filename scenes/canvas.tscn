@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cof5l3mdm0sjd"]
+[gd_scene load_steps=3 format=3 uid="uid://cof5l3mdm0sjd"]
 
 [ext_resource type="Script" uid="uid://bcqiv2cr8pqgw" path="res://scripts/Draw.cs" id="1_7axt1"]
+[ext_resource type="Texture2D" uid="uid://crn88g228udbb" path="res://textures/canvas_sides.png" id="2_owpp6"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -10,3 +11,7 @@ _color = Color(1, 1, 1, 1)
 _width = 12.0
 
 [node name="Line2D" type="Line2D" parent="Node2D"]
+
+[node name="CanvasSides" type="Sprite2D" parent="Node2D"]
+position = Vector2(640, 362)
+texture = ExtResource("2_owpp6")

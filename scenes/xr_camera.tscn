@@ -1,19 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://bik0aahsipifq"]
+[gd_scene load_steps=25 format=3 uid="uid://bik0aahsipifq"]
 
-[ext_resource type="Script" uid="uid://r2lem5swtota" path="res://scripts/Player.cs" id="1_akeox"]
 [ext_resource type="Script" uid="uid://tqo43muvvcsk" path="res://scripts/PlayerCamera.cs" id="1_bltah"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_agsyn"]
 [ext_resource type="Script" uid="uid://ci0ve3vqoq3lu" path="res://scripts/BookWatcher.cs" id="2_qk257"]
 [ext_resource type="PackedScene" uid="uid://mtbwbngn8vp7" path="res://scenes/Rovas_I.tscn" id="2_r813g"]
-[ext_resource type="Script" uid="uid://dca6qf2b7ytfe" path="res://scripts/RovasI.cs" id="3_liqrl"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_sxk34"]
+[ext_resource type="Script" uid="uid://dfviepj7inemt" path="res://scripts/LeftController.cs" id="4_5jkro"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_hntak"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_rvjwr"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_sxk34"]
+[ext_resource type="PackedScene" uid="uid://cof5l3mdm0sjd" path="res://scenes/canvas.tscn" id="5_5jkro"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_hntak"]
 [ext_resource type="PackedScene" uid="uid://dqx4wr1nncr6y" path="res://scenes/spellbook.tscn" id="6_bltah"]
-[ext_resource type="Script" uid="uid://ukkv455em2k" path="res://scripts/Picker.cs" id="9_43o0a"]
-[ext_resource type="Script" uid="uid://bb4st8blxsxxq" path="res://scripts/Caster.cs" id="9_n13hg"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="10_5jkro"]
 [ext_resource type="PackedScene" uid="uid://6m485ygtfys7" path="res://scenes/SpellbookUI.tscn" id="11_a86gq"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="11_akeox"]
@@ -21,8 +19,42 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_hntak"]
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="QuadMesh" id="QuadMesh_5jkro"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_akeox"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jkro"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_akeox")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e15b6"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
+
+[sub_resource type="QuadMesh" id="QuadMesh_akeox"]
+resource_local_to_scene = true
+size = Vector2(1280, 720)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a86gq"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_a86gq")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8abii"]
+resource_local_to_scene = true
+size = Vector3(1280, 720, 0.02)
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_akeox")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -39,20 +71,29 @@ collision_mask = 8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014887, 0.0146879, 0.0101476)
 shape = SubResource("BoxShape3D_hntak")
 
-[node name="Rovas_I" parent="XROrigin3D/XRCamera3D" instance=ExtResource("2_r813g")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.149404, -1.18586)
-visible = false
-script = ExtResource("3_liqrl")
-
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
+script = ExtResource("4_5jkro")
 
-[node name="Viewport2Din3D" parent="XROrigin3D/LeftController" instance=ExtResource("10_5jkro")]
-transform = Transform3D(0.00615704, -0.00173621, 0.124836, -0.000362116, 0.124987, 0.00175617, -0.124848, -0.000448144, 0.00615137, 0.0727528, -0.00353877, -0.00878174)
+[node name="LeftPointer" parent="XROrigin3D/LeftController" instance=ExtResource("11_akeox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283335, 0, 0.0482672)
+
+[node name="SpellbookUI" parent="XROrigin3D/LeftController" instance=ExtResource("10_5jkro")]
+transform = Transform3D(0.00246281, -0.00173621, 0.124836, -0.000144846, 0.124987, 0.00175617, -0.0499391, -0.000448143, 0.00615136, 0.0610494, 0.0414658, 0.0025106)
 collision_layer = 5242880
-scene = ExtResource("11_a86gq")
 unshaded = true
-scene_properties_keys = PackedStringArray()
+
+[node name="SpellBookUI" parent="XROrigin3D/LeftController/SpellbookUI/Viewport" index="0" instance=ExtResource("11_a86gq")]
+
+[node name="Screen" parent="XROrigin3D/LeftController/SpellbookUI" index="1"]
+mesh = SubResource("QuadMesh_5jkro")
+surface_material_override/0 = SubResource("StandardMaterial3D_5jkro")
+
+[node name="StaticBody3D" parent="XROrigin3D/LeftController/SpellbookUI" index="2"]
+collision_layer = 5242880
+
+[node name="CollisionShape3D" parent="XROrigin3D/LeftController/SpellbookUI/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_e15b6")
 
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_agsyn")]
 
@@ -61,6 +102,8 @@ grab_distance = 0.08
 ranged_enable = false
 
 [node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("4_rvjwr")]
+max_speed = 5.0
+strafe = true
 
 [node name="BookWatcher" type="RayCast3D" parent="XROrigin3D/LeftController"]
 transform = Transform3D(0.0160388, -0.999871, -7.01082e-10, -4.37114e-08, 1.91069e-15, -1, 0.999871, 0.0160388, -4.37058e-08, -0.0179906, -0.0404898, 0.113682)
@@ -75,13 +118,6 @@ script = ExtResource("2_qk257")
 [node name="Spellbook" parent="XROrigin3D/LeftController" instance=ExtResource("6_bltah")]
 transform = Transform3D(0.00615704, 0.124836, 0.00173621, -0.000362116, 0.00175617, -0.124987, -0.124848, 0.00615137, 0.000448144, -0.0125137, -0.119328, 0.097414)
 
-[node name="Caster" type="RayCast3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0369385, -0.017, 0.083)
-target_position = Vector3(0, -1.5, 0)
-collision_mask = 8
-collide_with_areas = true
-script = ExtResource("9_n13hg")
-
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
@@ -93,24 +129,39 @@ ranged_enable = false
 
 [node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("5_hntak")]
 
-[node name="Picker" type="RayCast3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0298254, -0.0173841, 0.0828322)
-visible = false
-enabled = false
-target_position = Vector3(0, -1.5, 0)
-collision_mask = 9
-collide_with_areas = true
-script = ExtResource("9_43o0a")
-
-[node name="FunctionPointer" parent="XROrigin3D/RightController" instance=ExtResource("11_akeox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0254965, 0, 0.0361878)
-laser_length = 1
-show_target = true
-collision_mask = 5242882
-suppress_radius = 0.1
+[node name="RightPointer" parent="XROrigin3D/RightController" instance=ExtResource("11_akeox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285628, 0, 0.0454759)
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_sxk34")]
 collision_mask = 1019
 
-[connection signal="EnabledState" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController/Caster" method="OnBookWatcherEnabledState"]
-[connection signal="LabelPressed" from="XROrigin3D/RightController/Picker" to="XROrigin3D/XRCamera3D/Rovas_I" method="OnPickerLabelPressed"]
+[node name="CastingCanvas" parent="XROrigin3D" instance=ExtResource("10_5jkro")]
+transform = Transform3D(0.00091706, 0, -0.000398749, 0, 0.001, 0, 0.000398749, 0, 0.00091706, 0.406691, 1.04413, -1.65584)
+visible = false
+screen_size = Vector2(1280, 720)
+viewport_size = Vector2(1280, 720)
+
+[node name="Viewport" parent="XROrigin3D/CastingCanvas" index="0"]
+size = Vector2i(1280, 720)
+
+[node name="Canvas" parent="XROrigin3D/CastingCanvas/Viewport" index="0" instance=ExtResource("5_5jkro")]
+
+[node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
+mesh = SubResource("QuadMesh_akeox")
+surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
+
+[node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
+screen_size = Vector2(1280, 720)
+viewport_size = Vector2(1280, 720)
+
+[node name="CollisionShape3D" parent="XROrigin3D/CastingCanvas/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_8abii")
+
+[node name="Rovas_I" parent="XROrigin3D/CastingCanvas" instance=ExtResource("2_r813g")]
+transform = Transform3D(250, 0, 0, 0, 250, 0, 0, 0, 250, -393.333, -38.3835, 22.6475)
+
+[connection signal="EnabledState" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookWatcherEnabledState"]
+[connection signal="IsBookVisible" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookVisibleChanged"]
+
+[editable path="XROrigin3D/LeftController/SpellbookUI"]
+[editable path="XROrigin3D/CastingCanvas"]
