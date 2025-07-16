@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="11_akeox"]
 [ext_resource type="PackedScene" uid="uid://b26lgsa1bjvl4" path="res://scenes/glyphs.tscn" id="16_5jkro"]
 [ext_resource type="Script" uid="uid://b6tfqroirfex3" path="res://scripts/Glyphs.cs" id="17_a86gq"]
+[ext_resource type="Script" uid="uid://cluqunxpnqwo2" path="res://scripts/PlayerModel.cs" id="16_5jkro"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hntak"]
 size = Vector3(0.25, 0.25, 0.25)
@@ -46,7 +47,7 @@ size = Vector2(1280, 720)
 [sub_resource type="ViewportTexture" id="ViewportTexture_e15b6"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e15b6"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_e15b6")
@@ -56,6 +57,9 @@ texture_filter = 1
 resource_local_to_scene = true
 size = Vector3(1280, 720, 0.02)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_akeox"]
+
+[node name="Node3D" type="Node3D"]
 [node name="Player" type="Node3D"]
 script = ExtResource("1_5jkro")
 
@@ -151,7 +155,7 @@ size = Vector2i(1280, 720)
 
 [node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
 mesh = SubResource("QuadMesh_akeox")
-surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
+surface_material_override/0 = SubResource("StandardMaterial3D_e15b6")
 
 [node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
 screen_size = Vector2(1280, 720)
@@ -163,6 +167,10 @@ shape = SubResource("BoxShape3D_8abii")
 [node name="Glyphs" parent="XROrigin3D/CastingCanvas" instance=ExtResource("16_5jkro")]
 transform = Transform3D(249.914, -6.54425, 2.86058e-07, 0, -1.09278e-05, -250, 6.54425, 249.914, -1.09241e-05, -421.909, 29.8671, 29.5026)
 script = ExtResource("17_a86gq")
+
+[node name="PlayerModel" type="MeshInstance3D" parent="XROrigin3D"]
+mesh = SubResource("CapsuleMesh_akeox")
+script = ExtResource("16_5jkro")
 
 [connection signal="GlyphWakeUp" from="." to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphWakeUpRequest"]
 [connection signal="SpellDeSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
