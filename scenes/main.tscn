@@ -48,7 +48,7 @@ material = SubResource("StandardMaterial3D_0wfyh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_tefeu"]
 resource_local_to_scene = true
-size = Vector2(720, 480)
+size = Vector2(3, 2)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("Viewport")
@@ -61,7 +61,7 @@ texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85g3d"]
 resource_local_to_scene = true
-size = Vector3(720, 480, 0.02)
+size = Vector3(3, 2, 0.02)
 
 [node name="Node3D" type="Node3D"]
 
@@ -106,28 +106,19 @@ screen_size = Vector2(1280, 720)
 scene = ExtResource("5_tbgi4")
 viewport_size = Vector2(1280, 720)
 
-[node name="OptionsPanel" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 1.0197, 0.519253, -1.36703)
-screen_size = Vector2(720, 480)
-viewport_size = Vector2(720, 480)
+[node name="Viewport2Din3D" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.693749, 1, -1)
 
-[node name="Viewport" parent="OptionsPanel" index="0"]
-size = Vector2i(720, 480)
+[node name="SetupPanel" parent="Viewport2Din3D/Viewport" index="0" instance=ExtResource("6_tefeu")]
 
-[node name="SetupPanel" parent="OptionsPanel/Viewport" index="0" instance=ExtResource("6_tefeu")]
-
-[node name="Screen" parent="OptionsPanel" index="1"]
+[node name="Screen" parent="Viewport2Din3D" index="1"]
 mesh = SubResource("QuadMesh_tefeu")
 surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
-[node name="StaticBody3D" parent="OptionsPanel" index="2"]
-screen_size = Vector2(720, 480)
-viewport_size = Vector2(720, 480)
-
-[node name="CollisionShape3D" parent="OptionsPanel/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="Viewport2Din3D/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_85g3d")
 
-[connection signal="SpellDeSelected" from="OptionsPanel/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
-[connection signal="SpellSelected" from="OptionsPanel/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
+[connection signal="SpellDeSelected" from="Viewport2Din3D/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
+[connection signal="SpellSelected" from="Viewport2Din3D/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
 
-[editable path="OptionsPanel"]
+[editable path="Viewport2Din3D"]

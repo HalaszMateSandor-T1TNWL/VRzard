@@ -13,6 +13,9 @@ public partial class SpellbookUi : CanvasLayer
 	[Signal]
 	public delegate void UnRegisterShapeEventHandler(int spell);
 	
+	[Signal]
+	public delegate void CanvasWakeUpRequestEventHandler(int spell);
+	
 	private void OnSpellSelected(int spell)
 	{
 		EmitSignal(SignalName.RegisterName, spell);
@@ -21,7 +24,14 @@ public partial class SpellbookUi : CanvasLayer
 	
 	private void OnSpellDeSelected(int spell)
 	{
+		GD.Print("Sending Signal to unregister name");
 		EmitSignal(SignalName.UnRegisterName, spell);
+		GD.Print("Sending Signal to unregister shape");
 		EmitSignal(SignalName.UnRegisterShape, spell);
+	}
+	
+	private void OnCanvasWakeUpRequest(int spell)
+	{
+		EmitSignal(SignalName.CanvasWakeUpRequest, spell);
 	}
 }
