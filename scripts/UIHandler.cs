@@ -51,7 +51,6 @@ public partial class UIHandler : VBoxContainer
 	private void OnRegisterShapeRequest(int spell)
 	{
 		EmitSignal(SignalName.WakeUpCanvas, spell);
-		GD.Print("Emitting signal for canvas to wake up");
 	}
 
 	private void OnUnRegisterNameRequest(int spell)

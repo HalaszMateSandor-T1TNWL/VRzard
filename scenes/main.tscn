@@ -53,7 +53,7 @@ size = Vector2(3, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tefeu"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_tefeu")
@@ -113,12 +113,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.693749, 1, -1)
 
 [node name="Screen" parent="Viewport2Din3D" index="1"]
 mesh = SubResource("QuadMesh_tefeu")
-surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
+surface_material_override/0 = SubResource("StandardMaterial3D_tefeu")
 
 [node name="CollisionShape3D" parent="Viewport2Din3D/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_85g3d")
-
-[connection signal="SpellDeSelected" from="Viewport2Din3D/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
-[connection signal="SpellSelected" from="Viewport2Din3D/Viewport/SetupPanel" to="Player/XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
 
 [editable path="Viewport2Din3D"]

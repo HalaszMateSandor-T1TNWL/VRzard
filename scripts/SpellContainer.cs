@@ -139,19 +139,24 @@ public partial class SpellContainer : Godot.GridContainer
 		switch(spell)
 		{
 			case (int)SpellList.Spells.Ignite:
-				_ignite.ButtonPressed = false;
+				_ignite.SetPressedNoSignal(false);
+				_spellsChosen--;
 				break;
 			case (int)SpellList.Spells.Teleport:
-				_teleport.ButtonPressed = false;
+				_teleport.SetPressedNoSignal(false);
+				_spellsChosen--;
 				break;
 			case (int)SpellList.Spells.Freeze:
-				_freeze.ButtonPressed = false;
+				_freeze.SetPressedNoSignal(false);
+				_spellsChosen--;
 				break;
 			case (int)SpellList.Spells.Wind:
-				_wind.ButtonPressed = false;
+				_wind.SetPressedNoSignal(false);
+				_spellsChosen--;
 				break;
 			case (int)SpellList.Spells.Earth:
-				_earth.ButtonPressed = false;
+				_earth.SetPressedNoSignal(false);
+				_spellsChosen--;
 				break;
 			default:
 				GD.PrintErr("Uhh, this button isn't supposed to be here");
