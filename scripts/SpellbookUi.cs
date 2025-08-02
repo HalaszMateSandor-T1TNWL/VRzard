@@ -15,6 +15,8 @@ public partial class SpellbookUi : CanvasLayer
 	
 	[Signal]
 	public delegate void CanvasWakeUpRequestEventHandler(int spell);
+	[Signal]
+	public delegate void CanvasSleepRequestEventHandler(int spell);
 	
 	private void OnSpellSelected(int spell)
 	{
@@ -33,5 +35,15 @@ public partial class SpellbookUi : CanvasLayer
 	private void OnCanvasWakeUpRequest(int spell)
 	{
 		EmitSignal(SignalName.CanvasWakeUpRequest, spell);
+	}
+	
+	private void OnSleepCanvasRequest(int spell)
+	{
+		EmitSignal(SignalName.CanvasSleepRequest, spell);
+	}
+	
+	private void OnShowGlyphRequest(int spell)
+	{
+		
 	}
 }

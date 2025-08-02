@@ -8,8 +8,14 @@ public partial class UIHandler : VBoxContainer
 
 	[Signal]
 	public delegate void WakeUpCanvasEventHandler(int spell);
+	[Signal]
+	public delegate void SleepCanvasEventHandler(int spell);
+	[Signal]
+	public delegate void ShowGlyphEventHandler(int spell);
 
 	private List<Button> _buttons = [];
+
+	private int _spellSelected;
 
 	public override void _Ready()
 	{
@@ -109,6 +115,35 @@ public partial class UIHandler : VBoxContainer
 		}
 
 		return freeButtonIndex;
-	} 
+	}
+
+	private void OnUnRegisterShapeRequest(int spell)
+	{
+		EmitSignal(SignalName.SleepCanvas, spell);
+	}
+
+	private void OnSpell1Selected()
+	{
+		_spellSelected = GetButton(_buttons[3].Text);
+		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+	}
+
+	private void OnSpell2Selected()
+	{
+		_spellSelected = GetButton(_buttons[2].Text);
+		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+	}
+
+	private void OnSpell3Selected()
+	{
+		_spellSelected = GetButton(_buttons[1].Text);
+		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+	}
+
+	private void OnSpell4Selected()
+	{
+		_spellSelected = GetButton(_buttons[0].Text);
+		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+	}
 
 }
