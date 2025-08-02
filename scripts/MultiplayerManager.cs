@@ -45,6 +45,9 @@ public partial class MultiplayerManager : Node3D
 
     private void SpawnPlayer(long peerId)
     {
-        playersContainer.AddChild(GD.Load<PackedScene>(PlayerScenePath).Instantiate() as Node3D);
+        var playerScene = GD.Load<PackedScene>(PlayerScenePath);
+        var player = playerScene.Instantiate() as Node3D;
+        playersContainer.AddChild(player, true);
+        player.SetMultiplayerAuthority((int)peerId);
     }
 }

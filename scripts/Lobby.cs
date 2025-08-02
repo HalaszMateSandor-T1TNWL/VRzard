@@ -101,7 +101,7 @@ public partial class Lobby : Control
 
     private void LoadGameScene()
     {
-        var scene = GD.Load<PackedScene>("res://scenes/main.tscn");
+        var scene = GD.Load<PackedScene>("res://scenes/MainGame.tscn");
         GetTree().ChangeSceneToPacked(scene);
     }
 
