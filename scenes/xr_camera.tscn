@@ -25,14 +25,14 @@ size = Vector3(0.25, 0.25, 0.25)
 resource_local_to_scene = true
 size = Vector2(3, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8abii"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_a86gq"]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_8abii")
+albedo_texture = SubResource("ViewportTexture_a86gq")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e15b6"]
@@ -43,13 +43,13 @@ size = Vector3(3, 2, 0.02)
 resource_local_to_scene = true
 size = Vector2(1280, 720)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w0tta"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_e15b6"]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0tta"]
 transparency = 1
 cull_mode = 2
-albedo_texture = SubResource("ViewportTexture_w0tta")
+albedo_texture = SubResource("ViewportTexture_e15b6")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8abii"]
@@ -161,7 +161,6 @@ shape = SubResource("BoxShape3D_8abii")
 
 [node name="Glyphs" parent="XROrigin3D/CastingCanvas" instance=ExtResource("16_5jkro")]
 transform = Transform3D(249.914, -6.54425, 2.86058e-07, 0, -1.09278e-05, -250, 6.54425, 249.914, -1.09241e-05, -421.909, 29.8671, 29.5026)
-visible = false
 script = ExtResource("17_a86gq")
 
 [connection signal="GlyphWakeUp" from="." to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphWakeUpRequest"]

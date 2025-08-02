@@ -26,9 +26,7 @@ public partial class SpellbookUi : CanvasLayer
 	
 	private void OnSpellDeSelected(int spell)
 	{
-		GD.Print("Sending Signal to unregister name");
 		EmitSignal(SignalName.UnRegisterName, spell);
-		GD.Print("Sending Signal to unregister shape");
 		EmitSignal(SignalName.UnRegisterShape, spell);
 	}
 	
