@@ -7,17 +7,20 @@ public partial class SpellbookUi : CanvasLayer
 	public delegate void RegisterNameEventHandler(int spell);
 	[Signal]
 	public delegate void RegisterShapeEventHandler(int spell);
-	
+
 	[Signal]
 	public delegate void UnRegisterNameEventHandler(int spell);
 	[Signal]
 	public delegate void UnRegisterShapeEventHandler(int spell);
-	
+
 	[Signal]
-	public delegate void CanvasWakeUpRequestEventHandler(int spell);
+	public delegate void CanvasWakeUpRequestEventHandler();
 	[Signal]
-	public delegate void CanvasSleepRequestEventHandler(int spell);
-	
+	public delegate void CanvasSleepRequestEventHandler();
+
+	[Signal]
+	public delegate void ShowGlyphEventHandler(int spell);
+
 	private void OnSpellSelected(int spell)
 	{
 		EmitSignal(SignalName.RegisterName, spell);
@@ -30,18 +33,19 @@ public partial class SpellbookUi : CanvasLayer
 		EmitSignal(SignalName.UnRegisterShape, spell);
 	}
 	
-	private void OnCanvasWakeUpRequest(int spell)
+	private void OnCanvasWakeUpRequest()
 	{
-		EmitSignal(SignalName.CanvasWakeUpRequest, spell);
+		EmitSignal(SignalName.CanvasWakeUpRequest);
 	}
 	
-	private void OnSleepCanvasRequest(int spell)
+	private void OnSleepCanvasRequest()
 	{
-		EmitSignal(SignalName.CanvasSleepRequest, spell);
+		EmitSignal(SignalName.CanvasSleepRequest);
 	}
 	
 	private void OnShowGlyphRequest(int spell)
 	{
-		
+		EmitSignal(SignalName.ShowGlyph, spell);
 	}
+	
 }

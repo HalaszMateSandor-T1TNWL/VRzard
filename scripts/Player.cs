@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public partial class Player : Node3D
 {
 	[Signal]
-	public delegate void GlyphWakeUpEventHandler(int spellLetter);
-	[Signal]
 	public delegate void SpellSelectedEventHandler(int spell);
 	[Signal]
 	public delegate void SpellDeSelectedEventHandler(int spell);
@@ -39,12 +37,11 @@ public partial class Player : Node3D
 		EmitSignal(SignalName.SpellSelected, spell);
 	}
 
-	private void OnCanvasWakeUpRequest(int spell)
+	private void OnCanvasWakeUpRequest()
 	{
 		if (_canvas.Visible == false)
 		{
 			_canvas.Visible = true;
 		}
 	}
-	
 }

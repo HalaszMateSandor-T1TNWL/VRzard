@@ -7,9 +7,9 @@ public partial class UIHandler : VBoxContainer
 {
 
 	[Signal]
-	public delegate void WakeUpCanvasEventHandler(int spell);
+	public delegate void WakeUpCanvasEventHandler();
 	[Signal]
-	public delegate void SleepCanvasEventHandler(int spell);
+	public delegate void SleepCanvasEventHandler();
 	[Signal]
 	public delegate void ShowGlyphEventHandler(int spell);
 
@@ -56,7 +56,7 @@ public partial class UIHandler : VBoxContainer
 
 	private void OnRegisterShapeRequest(int spell)
 	{
-		EmitSignal(SignalName.WakeUpCanvas, spell);
+		
 	}
 
 	private void OnUnRegisterNameRequest(int spell)
@@ -118,31 +118,35 @@ public partial class UIHandler : VBoxContainer
 
 	private void OnUnRegisterShapeRequest(int spell)
 	{
-		EmitSignal(SignalName.SleepCanvas, spell);
+
 	}
 
 	private void OnSpell1Selected()
 	{
-		_spellSelected = GetButton(_buttons[3].Text);
+		_spellSelected = GetButton(_buttons[0].Text);
 		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+		EmitSignal(SignalName.WakeUpCanvas);
 	}
 
 	private void OnSpell2Selected()
 	{
-		_spellSelected = GetButton(_buttons[2].Text);
+		_spellSelected = GetButton(_buttons[1].Text);
 		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+		EmitSignal(SignalName.WakeUpCanvas);
 	}
 
 	private void OnSpell3Selected()
 	{
-		_spellSelected = GetButton(_buttons[1].Text);
+		_spellSelected = GetButton(_buttons[2].Text);
 		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+		EmitSignal(SignalName.WakeUpCanvas);
 	}
 
 	private void OnSpell4Selected()
 	{
-		_spellSelected = GetButton(_buttons[0].Text);
+		_spellSelected = GetButton(_buttons[3].Text);
 		EmitSignal(SignalName.ShowGlyph, _spellSelected);
+		EmitSignal(SignalName.WakeUpCanvas);
 	}
-
+	
 }

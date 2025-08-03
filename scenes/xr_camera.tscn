@@ -163,11 +163,11 @@ shape = SubResource("BoxShape3D_8abii")
 transform = Transform3D(249.914, -6.54425, 2.86058e-07, 0, -1.09278e-05, -250, 6.54425, 249.914, -1.09241e-05, -421.909, 29.8671, 29.5026)
 script = ExtResource("17_a86gq")
 
-[connection signal="GlyphWakeUp" from="." to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphWakeUpRequest"]
 [connection signal="SpellDeSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
 [connection signal="SpellSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
 [connection signal="CanvasSleepRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasSleepRequest"]
 [connection signal="CanvasWakeUpRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasWakeUpRequest"]
+[connection signal="ShowGlyph" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphShowRequest"]
 [connection signal="EnabledState" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookWatcherEnabledState"]
 [connection signal="IsBookVisible" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookVisibleChanged"]
 

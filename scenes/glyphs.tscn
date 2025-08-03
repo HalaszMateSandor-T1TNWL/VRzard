@@ -9,6 +9,8 @@
 [node name="I" parent="." instance=ExtResource("1_jx0vr")]
 
 [node name="P" parent="." instance=ExtResource("2_c16r2")]
+visible = false
 
 [node name="T" parent="." instance=ExtResource("1_c16r2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0252798, 0, 0.138387)
+visible = false
