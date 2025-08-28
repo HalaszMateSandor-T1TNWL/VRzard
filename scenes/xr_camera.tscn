@@ -46,7 +46,7 @@ size = Vector2(3, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8abii"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e15b6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -64,7 +64,7 @@ size = Vector2(1280, 720)
 [sub_resource type="ViewportTexture" id="ViewportTexture_w0tta"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykbne"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0tta"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_w0tta")
@@ -113,7 +113,7 @@ unshaded = true
 
 [node name="Screen" parent="XROrigin3D/LeftController/SpellbookUI" index="1"]
 mesh = SubResource("QuadMesh_5jkro")
-surface_material_override/0 = SubResource("StandardMaterial3D_e15b6")
+surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
 
 [node name="StaticBody3D" parent="XROrigin3D/LeftController/SpellbookUI" index="2"]
 collision_layer = 5242880
@@ -163,7 +163,6 @@ collision_mask = 1019
 
 [node name="CastingCanvas" parent="XROrigin3D" instance=ExtResource("10_5jkro")]
 transform = Transform3D(0.00091706, 0, -0.000398749, 0, 0.001, 0, 0.000398749, 0, 0.00091706, 0.406691, 1.04413, -1.65584)
-visible = false
 screen_size = Vector2(1280, 720)
 viewport_size = Vector2(1280, 720)
 
@@ -174,7 +173,7 @@ size = Vector2i(1280, 720)
 
 [node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
 mesh = SubResource("QuadMesh_akeox")
-surface_material_override/0 = SubResource("StandardMaterial3D_ykbne")
+surface_material_override/0 = SubResource("StandardMaterial3D_w0tta")
 
 [node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
 screen_size = Vector2(1280, 720)
@@ -193,7 +192,9 @@ script = ExtResource("16_5jkro")
 
 [connection signal="SpellDeSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
 [connection signal="SpellSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
+[connection signal="CanvasSleepRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasSleepRequest"]
 [connection signal="CanvasWakeUpRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasWakeUpRequest"]
+[connection signal="ShowGlyph" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphShowRequest"]
 [connection signal="EnabledState" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookWatcherEnabledState"]
 [connection signal="IsBookVisible" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookVisibleChanged"]
 
