@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://dmueay68m8q3x"]
+
+[ext_resource type="Texture2D" uid="uid://blj23w6s1lo0f" path="res://textures/Name_1m x 1m.png" id="1_t4bxf"]
+[ext_resource type="Script" uid="uid://bmt1vmjdqbfmb" path="res://scripts/MultiplayerManager.cs" id="1_x628s"]
+[ext_resource type="PackedScene" uid="uid://ci171806fm5k2" path="res://scenes/teto_pickable.tscn" id="2_x628s"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_7fyak"]
+[ext_resource type="PackedScene" uid="uid://cof5l3mdm0sjd" path="res://scenes/canvas.tscn" id="4_fpdtd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+ambient_light_color = Color(0.424764, 0.606789, 1, 1)
+ambient_light_energy = 2.27
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
+size = Vector3(100, 0.05, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_texture = ExtResource("1_t4bxf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(100, 0.05, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+albedo_texture = ExtResource("1_t4bxf")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0.972371, 0.907074, 0.954464, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0wfyh"]
+material = SubResource("StandardMaterial3D_0wfyh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_x628s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(1, 1, 0.701961, 1)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0130289, 0.0131972, 0.00861516)
+material_override = SubResource("StandardMaterial3D_sugp2")
+mesh = SubResource("BoxMesh_o5qli")
+surface_material_override/0 = SubResource("StandardMaterial3D_jyhfs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31966, 0.532969, -1.11322)
+mesh = SubResource("BoxMesh_0wfyh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="Teto" parent="." instance=ExtResource("2_x628s")]
+transform = Transform3D(0.760644, 0, -0.649169, 0, 1, 0, 0.649169, 0, 0.760644, -1.4681, 1.11311, -0.869502)
+
+[node name="Canvas" parent="." instance=ExtResource("3_7fyak")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -8.15791, 1.45623, -1.94625)
+screen_size = Vector2(1280, 720)
+scene = ExtResource("4_fpdtd")
+viewport_size = Vector2(1280, 720)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bik0aahsipifq")
+spawn_path = NodePath("../Players")
+spawn_limit = 2
+
+[node name="Players" type="Node3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bik0aahsipifq"]
+[gd_scene load_steps=30 format=3 uid="uid://bik0aahsipifq"]
 
 [ext_resource type="Script" uid="uid://dt38py0y30qae" path="res://scripts/Player.cs" id="1_5jkro"]
 [ext_resource type="Script" uid="uid://tqo43muvvcsk" path="res://scripts/PlayerCamera.cs" id="1_bltah"]
@@ -15,8 +15,26 @@
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="10_5jkro"]
 [ext_resource type="PackedScene" uid="uid://6m485ygtfys7" path="res://scenes/SpellbookUI.tscn" id="11_a86gq"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="11_akeox"]
-[ext_resource type="PackedScene" uid="uid://b26lgsa1bjvl4" path="res://scenes/glyphs.tscn" id="16_5jkro"]
+[ext_resource type="Script" uid="uid://cluqunxpnqwo2" path="res://scripts/PlayerModel.cs" id="16_5jkro"]
+[ext_resource type="PackedScene" uid="uid://b26lgsa1bjvl4" path="res://scenes/glyphs.tscn" id="16_8abii"]
 [ext_resource type="Script" uid="uid://b6tfqroirfex3" path="res://scripts/Glyphs.cs" id="17_a86gq"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8abii"]
+properties/0/path = NodePath("PlayerModel:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("XROrigin3D/LeftController/LeftHand:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("XROrigin3D/LeftController/LeftHand:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("XROrigin3D/RightController/RightHand:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("XROrigin3D/RightController/RightHand:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hntak"]
 size = Vector3(0.25, 0.25, 0.25)
@@ -25,14 +43,14 @@ size = Vector3(0.25, 0.25, 0.25)
 resource_local_to_scene = true
 size = Vector2(3, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_a86gq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8abii"]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_a86gq")
+albedo_texture = SubResource("ViewportTexture_8abii")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e15b6"]
@@ -43,21 +61,26 @@ size = Vector3(3, 2, 0.02)
 resource_local_to_scene = true
 size = Vector2(1280, 720)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_e15b6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_w0tta"]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0tta"]
 transparency = 1
 cull_mode = 2
-albedo_texture = SubResource("ViewportTexture_e15b6")
+albedo_texture = SubResource("ViewportTexture_w0tta")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8abii"]
 resource_local_to_scene = true
 size = Vector3(1280, 720, 0.02)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_akeox"]
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_5jkro")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8abii")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -159,9 +182,13 @@ viewport_size = Vector2(1280, 720)
 [node name="CollisionShape3D" parent="XROrigin3D/CastingCanvas/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8abii")
 
-[node name="Glyphs" parent="XROrigin3D/CastingCanvas" instance=ExtResource("16_5jkro")]
-transform = Transform3D(249.914, -6.54425, 2.86058e-07, 0, -1.09278e-05, -250, 6.54425, 249.914, -1.09241e-05, -421.909, 29.8671, 29.5026)
+[node name="Glyphs" parent="XROrigin3D/CastingCanvas" instance=ExtResource("16_8abii")]
 script = ExtResource("17_a86gq")
+
+[node name="PlayerModel" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_akeox")
+skeleton = NodePath("../XROrigin3D")
+script = ExtResource("16_5jkro")
 
 [connection signal="SpellDeSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
 [connection signal="SpellSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
