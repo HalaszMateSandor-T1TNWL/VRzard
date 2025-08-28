@@ -46,7 +46,7 @@ size = Vector2(3, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8abii"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e15b6"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -64,7 +64,7 @@ size = Vector2(1280, 720)
 [sub_resource type="ViewportTexture" id="ViewportTexture_w0tta"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e15b6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykbne"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_w0tta")
@@ -113,7 +113,7 @@ unshaded = true
 
 [node name="Screen" parent="XROrigin3D/LeftController/SpellbookUI" index="1"]
 mesh = SubResource("QuadMesh_5jkro")
-surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
+surface_material_override/0 = SubResource("StandardMaterial3D_e15b6")
 
 [node name="StaticBody3D" parent="XROrigin3D/LeftController/SpellbookUI" index="2"]
 collision_layer = 5242880
@@ -174,7 +174,7 @@ size = Vector2i(1280, 720)
 
 [node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
 mesh = SubResource("QuadMesh_akeox")
-surface_material_override/0 = SubResource("StandardMaterial3D_e15b6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ykbne")
 
 [node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
 screen_size = Vector2(1280, 720)
