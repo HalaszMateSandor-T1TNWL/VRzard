@@ -4,9 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://crn88g228udbb" path="res://textures/canvas_sides.png" id="2_owpp6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_owpp6"]
-properties/0/path = NodePath("Node2D/Line2D:points")
+properties/0/path = NodePath("Node2D:_color")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("Node2D:_width")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Node2D:_antialiased")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Node2D/Line2D:points")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer"]
 

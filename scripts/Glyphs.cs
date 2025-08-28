@@ -21,11 +21,11 @@ public partial class Glyphs : Node3D
 		_glyphs.Add(_igniteGlyph);
 		_glyphs.Add(_teleportGlyph);
 		_glyphs.Add(_windGlyph);
-		_glyphs.Add(_freezeGlyph);
-		_glyphs.Add(_earthGlyph);
-		
+		//_glyphs.Add(_freezeGlyph);
+		//_glyphs.Add(_earthGlyph);
+
 		GlyphSetup();
-	}
+    }
 
 	private void OnGlyphShowRequest(int spell)
 	{

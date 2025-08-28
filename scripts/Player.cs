@@ -32,15 +32,15 @@ public partial class Player : Node3D
             GetNode<Node3D>("XROrigin3D").SetProcess(true);
             GetNode<MeshInstance3D>("PlayerModel").Visible = false;
 
-            ConnectGrabSignals("XROrigin3D/LeftHand/Interactor");
-            ConnectGrabSignals("XROrigin3D/RightHand/Interactor");
+            ConnectGrabSignals("XROrigin3D/LeftController/FunctionPickup");
+            ConnectGrabSignals("XROrigin3D/RightController/FunctionPickup");
         }
         else
         {
             GetNode<Node3D>("XROrigin3D").SetProcess(false);
             GetNode<MeshInstance3D>("PlayerModel").Visible = true;
-            GetNode<XRController3D>("XROrigin3D/LeftHand").SetProcess(false);
-            GetNode<XRController3D>("XROrigin3D/RightHand").SetProcess(false);
+            GetNode<XRController3D>("XROrigin3D/LeftController").SetProcess(false);
+            GetNode<XRController3D>("XROrigin3D/RightController").SetProcess(false);
         }
     }
 
@@ -53,8 +53,8 @@ public partial class Player : Node3D
             return;
         }
 
-        interactor.Connect("picked_up", new Callable(this, nameof(OnPickedUp)));
-        interactor.Connect("dropped", new Callable(this, nameof(OnDropped)));
+        interactor.Connect("has_picked_up", new Callable(this, nameof(OnPickedUp)));
+        interactor.Connect("has_dropped", new Callable(this, nameof(OnDropped)));
     }
 
     private void OnPickedUp(Node3D pickedUpNode)

@@ -64,7 +64,7 @@ size = Vector2(1280, 720)
 [sub_resource type="ViewportTexture" id="ViewportTexture_w0tta"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0tta"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e15b6"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_w0tta")
@@ -173,7 +173,7 @@ size = Vector2i(1280, 720)
 
 [node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
 mesh = SubResource("QuadMesh_akeox")
-surface_material_override/0 = SubResource("StandardMaterial3D_w0tta")
+surface_material_override/0 = SubResource("StandardMaterial3D_e15b6")
 
 [node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
 screen_size = Vector2(1280, 720)

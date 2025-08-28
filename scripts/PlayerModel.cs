@@ -7,7 +7,7 @@ public partial class PlayerModel : MeshInstance3D
 
     public override void _Ready()
     {
-        Camera = GetParent().GetNode<PlayerCamera>("XRCamera3D");
+        Camera = GetParent().GetNode<PlayerCamera>("XROrigin3D/XRCamera3D");
     }
 
     public override void _Process(double delta)
