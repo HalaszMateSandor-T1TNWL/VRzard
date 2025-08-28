@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public partial class Player : Node3D
 {
 	[Signal]
-	public delegate void GlyphWakeUpEventHandler(int spellLetter);
-	[Signal]
 	public delegate void SpellSelectedEventHandler(int spell);
 	[Signal]
 	public delegate void SpellDeSelectedEventHandler(int spell);
@@ -17,6 +15,7 @@ public partial class Player : Node3D
 	public override void _Ready()
 	{
 		_canvas = GetNode<Node3D>($"XROrigin3D/CastingCanvas");
+		_canvas.Visible = false;
 		Node currentScene = GetTree().CurrentScene;
 
 		_error = currentScene.GetNode($"Viewport2Din3D/Viewport/SetupPanel").Connect("SpellDeSelected", new Callable(this, nameof(OnSpellDeSelected)));
@@ -38,14 +37,11 @@ public partial class Player : Node3D
 		EmitSignal(SignalName.SpellSelected, spell);
 	}
 
-	private void OnCanvasWakeUpRequest(int spell)
+	private void OnCanvasWakeUpRequest()
 	{
-		if (_canvas.Visible) EmitSignal(SignalName.GlyphWakeUp, spell);
-		else
+		if (_canvas.Visible == false)
 		{
 			_canvas.Visible = true;
-			EmitSignal(SignalName.GlyphWakeUp, spell);
 		}
 	}
-	
 }

@@ -14,6 +14,8 @@ public partial class SpellList : Node
 		Wind,
 		Earth
 	}
+
+	
 	
 	public override void _Ready()
 	{

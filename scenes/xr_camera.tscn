@@ -28,7 +28,7 @@ size = Vector2(3, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_a86gq"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a86gq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -46,7 +46,7 @@ size = Vector2(1280, 720)
 [sub_resource type="ViewportTexture" id="ViewportTexture_e15b6"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8abii"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0tta"]
 transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_e15b6")
@@ -90,7 +90,7 @@ unshaded = true
 
 [node name="Screen" parent="XROrigin3D/LeftController/SpellbookUI" index="1"]
 mesh = SubResource("QuadMesh_5jkro")
-surface_material_override/0 = SubResource("StandardMaterial3D_a86gq")
+surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
 
 [node name="StaticBody3D" parent="XROrigin3D/LeftController/SpellbookUI" index="2"]
 collision_layer = 5242880
@@ -140,7 +140,6 @@ collision_mask = 1019
 
 [node name="CastingCanvas" parent="XROrigin3D" instance=ExtResource("10_5jkro")]
 transform = Transform3D(0.00091706, 0, -0.000398749, 0, 0.001, 0, 0.000398749, 0, 0.00091706, 0.406691, 1.04413, -1.65584)
-visible = false
 screen_size = Vector2(1280, 720)
 viewport_size = Vector2(1280, 720)
 
@@ -151,7 +150,7 @@ size = Vector2i(1280, 720)
 
 [node name="Screen" parent="XROrigin3D/CastingCanvas" index="1"]
 mesh = SubResource("QuadMesh_akeox")
-surface_material_override/0 = SubResource("StandardMaterial3D_8abii")
+surface_material_override/0 = SubResource("StandardMaterial3D_w0tta")
 
 [node name="StaticBody3D" parent="XROrigin3D/CastingCanvas" index="2"]
 screen_size = Vector2(1280, 720)
@@ -164,10 +163,11 @@ shape = SubResource("BoxShape3D_8abii")
 transform = Transform3D(249.914, -6.54425, 2.86058e-07, 0, -1.09278e-05, -250, 6.54425, 249.914, -1.09241e-05, -421.909, 29.8671, 29.5026)
 script = ExtResource("17_a86gq")
 
-[connection signal="GlyphWakeUp" from="." to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphWakeUpRequest"]
 [connection signal="SpellDeSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellDeSelected"]
 [connection signal="SpellSelected" from="." to="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" method="OnSpellSelected"]
+[connection signal="CanvasSleepRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasSleepRequest"]
 [connection signal="CanvasWakeUpRequest" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="." method="OnCanvasWakeUpRequest"]
+[connection signal="ShowGlyph" from="XROrigin3D/LeftController/SpellbookUI/Viewport/SpellBookUI" to="XROrigin3D/CastingCanvas/Glyphs" method="OnGlyphShowRequest"]
 [connection signal="EnabledState" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookWatcherEnabledState"]
 [connection signal="IsBookVisible" from="XROrigin3D/LeftController/BookWatcher" to="XROrigin3D/LeftController" method="OnBookVisibleChanged"]
 
